@@ -1,12 +1,12 @@
 import type { NextPage } from 'next'
 import Layout from '../components/layout/Layout'
 
-const Trending: NextPage = () => {
+const Login: NextPage = () => {
     return (
         <Layout>
-            <h1>Trending</h1>
+            <h1>Login</h1>
         </Layout>
     )
 }
 
-export default Trending
+export default Login

@@ -3,7 +3,9 @@ import Layout from '../components/layout/Layout'
 
 const NewProduct: NextPage = () => {
     return (
-        <Layout />
+        <Layout>
+            <h1>New Product</h1>
+        </Layout>
     )
 }
 

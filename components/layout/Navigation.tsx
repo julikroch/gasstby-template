@@ -21,8 +21,8 @@ const Navigation = () => {
     return (
         <Nav>
             <Link href={"/"}>Home</Link>
-            <Link href={"/second-link"}>Second Link</Link>
-            <Link href={"/third-link"}>Third Link</Link>
+            <Link href={"/trending"}>Trending</Link>
+            <Link href={"/new-product"}>New Product</Link>
         </Nav>
     )
 };

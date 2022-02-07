@@ -11,8 +11,8 @@ const Button = styled.a`
     border: 1px solid #d1d1d1;
     padding: .8rem 2rem;
     margin-right: 1rem;
-    background-color: ${(props: Button) => props.bgColor ? '#DA552F' : '#ffffff'};
-    color: ${(props: Button) => props.textColor ? 'white' : 'black'};
+    background-color: ${(props: Button) => props.bgColor ? '#DA552F' : '#fff'};
+    color: ${(props: Button) => props.textColor ? '#fff' : '#000'};
 
     &:last-of-type {
         margin-right: 0;
