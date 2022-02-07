@@ -14,7 +14,7 @@ const INITIAL_STATE = {
 
 const CreateAccount: NextPage = () => {
 
-    const { values, error, submitForm, handleSubmit, handleChange } = useValidation(INITIAL_STATE, createAccountValidation, createAccount)
+    const { values, handleSubmit, handleOnChange } = useValidation(INITIAL_STATE, createAccountValidation, createAccount)
 
     const { name, email, password } = values
 
@@ -31,7 +31,10 @@ const CreateAccount: NextPage = () => {
                         margin-top: 5rem;
                     `}
                 >Create Account</h1>
-                <Form onSubmit={handleSubmit}>
+                <Form
+                    onSubmit={handleSubmit}
+                    noValidate
+                >
                     <Field>
                         <label htmlFor='name'>Name</label>
                         <input
@@ -39,8 +42,9 @@ const CreateAccount: NextPage = () => {
                             id='name'
                             placeholder='Your name'
                             name='name'
-                            onChange={handleChange}
                             value={name}
+                            onChange={handleOnChange}
+                            onBlur={handleOnChange}
                         />
                     </Field>
                     <Field>
@@ -50,8 +54,8 @@ const CreateAccount: NextPage = () => {
                             id='email'
                             placeholder='Your email'
                             name='email'
-                            onChange={handleChange}
                             value={email}
+                            onChange={handleOnChange}
                         />
                     </Field>
                     <Field>
@@ -61,8 +65,8 @@ const CreateAccount: NextPage = () => {
                             id='password'
                             placeholder='Your password'
                             name='password'
-                            onChange={handleChange}
                             value={password}
+                            onChange={handleOnChange}
                         />
                     </Field>
                     <InputSubmit
