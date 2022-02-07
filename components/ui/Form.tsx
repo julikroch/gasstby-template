@@ -37,4 +37,4 @@ export const InputSubmit = styled.input `
     &:hover {
         cursor: pointer;
     }
-`
+`;

@@ -3,8 +3,25 @@ import type { NextPage } from 'next'
 import Layout from '../components/layout/Layout'
 import { Form, Field, InputSubmit } from '../components/ui/Form'
 import { jsx, css } from '@emotion/react';
+import useValidation from '../hooks/useValidation';
+import createAccountValidation from '../validation/createAccountValidation';
+
+const INITIAL_STATE = {
+    name: '',
+    email: '',
+    password: ''
+}
 
 const CreateAccount: NextPage = () => {
+
+    const { values, error, submitForm, handleSubmit, handleChange } = useValidation(INITIAL_STATE, createAccountValidation, createAccount)
+
+    const { name, email, password } = values
+
+    function createAccount() {
+        alert('Creating account')
+    }
+
     return (
         <Layout>
             <>
@@ -12,9 +29,9 @@ const CreateAccount: NextPage = () => {
                     css={css`
                         text-align:center;
                         margin-top: 5rem;
-                `}
+                    `}
                 >Create Account</h1>
-                <Form>
+                <Form onSubmit={handleSubmit}>
                     <Field>
                         <label htmlFor='name'>Name</label>
                         <input
@@ -22,6 +39,8 @@ const CreateAccount: NextPage = () => {
                             id='name'
                             placeholder='Your name'
                             name='name'
+                            onChange={handleChange}
+                            value={name}
                         />
                     </Field>
                     <Field>
@@ -31,6 +50,8 @@ const CreateAccount: NextPage = () => {
                             id='email'
                             placeholder='Your email'
                             name='email'
+                            onChange={handleChange}
+                            value={email}
                         />
                     </Field>
                     <Field>
@@ -40,6 +61,8 @@ const CreateAccount: NextPage = () => {
                             id='password'
                             placeholder='Your password'
                             name='password'
+                            onChange={handleChange}
+                            value={password}
                         />
                     </Field>
                     <InputSubmit
