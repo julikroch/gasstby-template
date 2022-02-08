@@ -9,7 +9,7 @@ export default function createAccountValidation(values) {
         errors.email = 'Invalid email'
     }
 
-    if (values.password) {
+    if (!values.password) {
         errors.password = 'Password is required'
     } else if (values.password.length < 6) {
         errors.password = 'Password must have more than 6 characters'
