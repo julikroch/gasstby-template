@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from "react";
 
+interface createAccount {
+    name: string,
+    email: string,
+    password: string
+}
+
 const useValidation = (initialState, validate, fn) => {
 
     const [values, setValues] = useState(initialState);
-    const [errors, setError] = useState({});
+    const [errors, setError] = useState<createAccount>({
+        name: '',
+        email: '',
+        password: ''
+    });
     const [submitForm, setSubmitForm] = useState(false);
 
     const handleOnChange = (e: any) => {
@@ -15,6 +25,12 @@ const useValidation = (initialState, validate, fn) => {
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
+        const validationErrors = validate(values)
+        setError(validationErrors)
+        setSubmitForm(true)
+    }
+
+    const handleBlur = () => {
         const validationErrors = validate(values)
         setError(validationErrors)
         setSubmitForm(true)
@@ -35,7 +51,8 @@ const useValidation = (initialState, validate, fn) => {
         errors,
         submitForm,
         handleOnChange,
-        handleSubmit
+        handleSubmit,
+        handleBlur
     }
 };
 
