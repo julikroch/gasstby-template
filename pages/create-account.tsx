@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import type { NextPage } from 'next'
+import { useRouter } from 'next/router'
 import Layout from '../components/layout/Layout'
 import { Form, Field, InputSubmit, Error } from '../components/ui/Form'
 import { jsx, css } from '@emotion/react';
 import useValidation from '../hooks/useValidation';
 import createAccountValidation from '../validation/createAccountValidation';
+import firebase from '../firebase';
+
 
 const INITIAL_STATE = {
     name: '',
@@ -14,12 +17,22 @@ const INITIAL_STATE = {
 
 const CreateAccount: NextPage = () => {
 
+    const [error, setError] = useState('');
+
+    const router = useRouter()
+
     const { values, errors, handleSubmit, handleOnChange, handleBlur } = useValidation(INITIAL_STATE, createAccountValidation, createAccount)
 
     const { name, email, password } = values
 
-    function createAccount() {
-        alert('Creating account')
+    async function createAccount() {
+        try {
+            await firebase.register(name, email, password)
+            router.push('/')
+        } catch (error) {
+            console.error('Error creating the user', error.message)
+            setError(error.message)
+        }
     }
 
     return (
@@ -79,6 +92,8 @@ const CreateAccount: NextPage = () => {
                     </Field>
 
                     {errors.password && <Error>{errors.password}</Error>}
+
+                    {error && <Error>{error}</Error>}
 
                     <InputSubmit
                         type="submit"
