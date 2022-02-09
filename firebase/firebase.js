@@ -4,8 +4,12 @@ import firebaseConfig from './config'
 
 class Firebase {
     constructor() {
-        app?.initializeApp(firebaseConfig)
-        this.auth = app?.auth()
+        if (!app?.apps.length) {
+            app?.initializeApp(firebaseConfig)
+        }
+        this.auth = app?.auth();
+        this.db = app?.firestore();
+        this.storage = app?.storage();
     }
 
     async register(name, email, password) {
@@ -13,6 +17,14 @@ class Firebase {
         return await newUser?.user.updateProfile({
             displayName: name
         })
+    }
+
+    async firebaseLogin(email, password) {
+        return await this.auth?.signInWithEmailAndPassword(email, password)
+    }
+
+    async firebaseLogout() {
+        await this.auth?.signOut()
     }
 }
 

@@ -8,7 +8,6 @@ import useValidation from '../hooks/useValidation';
 import createAccountValidation from '../validation/createAccountValidation';
 import firebase from '../firebase';
 
-
 const INITIAL_STATE = {
     name: '',
     email: '',
