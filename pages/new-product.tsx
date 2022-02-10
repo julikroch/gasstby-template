@@ -64,7 +64,7 @@ const NewProduct: NextPage = () => {
         setUploading(true);
     }
 
-    const handleProgress = (progress: any) => setProgress({progress});
+    const handleProgress = (progress: any) => setProgress({ progress });
 
     const handleUploadError = error => {
         setUploading(error);
@@ -75,11 +75,7 @@ const NewProduct: NextPage = () => {
         setProgress(100);
         setUploading(false);
         setImageName(name)
-        firebase
-            .storage
-            .ref("products")
-            .child(name)
-            .getDownloadURL()
+        firebase?.storage?.ref("products").child(name).getDownloadURL()
             .then(url => {
                 console.log(url);
                 setImageUrl(url);
