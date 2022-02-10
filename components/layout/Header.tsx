@@ -24,6 +24,10 @@ const Logo = styled.p`
     font-weight: 700;
     font-family: "Robot Slab", serif;
     margin-right: 2rem;
+
+    &:hover{
+        cursor: pointer;
+    }
 `
 
 const Header = () => {

@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 
 interface createAccount {
-    name: string,
-    email: string,
-    password: string
+    name: string
+    email?: string
+    password?: string
+    url?: string
+    description?: string
+    company?: string
 }
 
 const useValidation = (initialState, validate, fn) => {
@@ -12,7 +15,10 @@ const useValidation = (initialState, validate, fn) => {
     const [errors, setError] = useState<createAccount>({
         name: '',
         email: '',
-        password: ''
+        password: '',
+        url: '',
+        description: '',
+        company: ''
     });
     const [submitForm, setSubmitForm] = useState(false);
 
